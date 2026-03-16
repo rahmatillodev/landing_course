@@ -38,13 +38,7 @@ var opinionsData = [
 ];
 
 // Carousel data: students' results
-var resultsData = [
-  { score: '7.5', name: 'Madina', year: '2024' },
-  { score: '7.0', name: 'Dilnoza', year: '2024' },
-  { score: '8.0', name: 'Sardor', year: '2024' },
-  { score: '6.5', name: 'Jasur', year: '2024' },
-  { score: '7.0', name: 'Aziz', year: '2024' }
-];
+
 
 function renderOpinionsSlides() {
   var wrapper = document.querySelector('.swiper-opinions .swiper-wrapper');
@@ -63,24 +57,10 @@ function renderOpinionsSlides() {
   });
 }
 
-function renderResultsSlides() {
-  var wrapper = document.querySelector('.swiper-results .swiper-wrapper');
-  if (!wrapper) return;
-  resultsData.forEach(function (item) {
-    var slide = document.createElement('div');
-    slide.className = 'swiper-slide';
-    slide.innerHTML =
-      '<div class="result-card">' +
-      '<p class="result-score">' + item.score + '</p>' +
-      '<p class="result-name">' + item.name + '</p>' +
-      '<p class="result-year">' + item.year + '</p></div>';
-    wrapper.appendChild(slide);
-  });
-}
+
 
 document.addEventListener('DOMContentLoaded', function () {
   renderOpinionsSlides();
-  renderResultsSlides();
 
   // Swiper: Students' opinions — loop, autoplay
   new Swiper('.swiper-opinions', {
@@ -99,21 +79,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 
-  // Swiper: Students' results — loop, autoplay
-  new Swiper('.swiper-results', {
-    slidesPerView: 2,
-    spaceBetween: 20,
-    loop: true,
-    autoplay: {
-      delay: 2000,
-      disableOnInteraction: false
-    },
-    breakpoints: {
-      640: { slidesPerView: 2 },
-      768: { slidesPerView: 3 },
-      1024: { slidesPerView: 4 }
-    }
-  });
+
 
   // Form submit
   var form = document.getElementById('lead-form');

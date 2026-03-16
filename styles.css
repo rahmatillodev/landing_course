@@ -1,4 +1,12 @@
-/* IELTS Landing — Warm editorial design */
+/* IELTS Landing — Professional blue design */
+
+:root {
+  --blue-primary: #3498DB;
+  --blue-dark: #2980B9;
+  --blue-light: #5DADE2;
+  --white: #FFFFFF;
+  --shadow-blue: rgba(41, 128, 185, 0.3);
+}
 
 html {
   scroll-behavior: smooth;
@@ -8,6 +16,7 @@ body {
   font-family: 'DM Sans', system-ui, sans-serif;
   line-height: 1.6;
   font-size: 1rem;
+  background: #f0f7fc;
 }
 
 .font-display {
@@ -25,7 +34,7 @@ body {
 
 /* ----- Hero ----- */
 .hero-section {
-  background: var(--bg-cream, #faf7f2);
+  background: radial-gradient(circle, #5DADE2 0%, #3498DB 50%, #2980B9 100%);
 }
 
 .hero-layout {
@@ -46,7 +55,7 @@ body {
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: #1b4332;
+  color: #FFFFFF;
   margin-bottom: 0.75rem;
 }
 
@@ -55,12 +64,16 @@ body {
   font-size: clamp(2rem, 5vw, 3.25rem);
   font-weight: 700;
   line-height: 1.15;
-  color: #2d2a26;
+  color: #FFFFFF;
   margin-bottom: 1.25rem;
 }
 
+.hero-title-accent {
+  color: rgba(255, 255, 255, 0.95);
+}
+
 .hero-desc {
-  color: #6b6560;
+  color: rgba(255, 255, 255, 0.9);
   max-width: 32rem;
   margin-bottom: 1.5rem;
   line-height: 1.7;
@@ -70,7 +83,7 @@ body {
   list-style: none;
   padding: 0;
   margin: 0 0 2rem 0;
-  color: #2d2a26;
+  color: rgba(255, 255, 255, 0.95);
   font-size: 0.9375rem;
 }
 
@@ -88,24 +101,26 @@ body {
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: #c44536;
+  background: #FFFFFF;
 }
 
 .btn-primary {
   display: inline-block;
   padding: 0.875rem 1.75rem;
-  background: #1b4332;
-  color: #fff;
+  background: #3498DB;
+  color: #FFFFFF;
   font-weight: 600;
   font-size: 0.9375rem;
   border-radius: 8px;
   text-decoration: none;
-  transition: background 0.2s ease, transform 0.2s ease;
+  box-shadow: 0 4px 14px var(--shadow-blue);
+  transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .btn-primary:hover {
-  background: #143829;
+  background: #2980B9;
   transform: translateY(-1px);
+  box-shadow: 0 6px 20px var(--shadow-blue);
 }
 
 .hero-media {
@@ -126,7 +141,7 @@ body {
   aspect-ratio: 16/10;
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 20px 40px rgba(45, 42, 38, 0.12);
+  box-shadow: 0 20px 40px var(--shadow-blue);
 }
 
 .video-overlay {
@@ -135,7 +150,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(27, 67, 50, 0.25);
+  background: rgba(41, 128, 185, 0.25);
   cursor: pointer;
   transition: opacity 0.3s ease;
 }
@@ -148,27 +163,28 @@ body {
   width: 4rem;
   height: 4rem;
   border-radius: 50%;
-  background: #faf7f2;
+  background: #FFFFFF;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 24px var(--shadow-blue);
   transition: transform 0.2s ease;
 }
 
 /* ----- Form ----- */
 .section-form {
-  background: #fff;
-  border-top: 1px solid rgba(45, 42, 38, 0.06);
+  background: #f8fafc;
+  border-top: 1px solid rgba(41, 128, 185, 0.1);
 }
 
 .form-card {
   max-width: 26rem;
   margin: 0 auto;
   padding: 2.5rem;
-  background: #faf7f2;
-  border: 1px solid rgba(27, 67, 50, 0.12);
+  background: #fff;
+  border: 1px solid rgba(41, 128, 185, 0.2);
   border-radius: 16px;
+  box-shadow: 0 10px 40px var(--shadow-blue);
 }
 
 .form-title {
@@ -211,8 +227,8 @@ body {
 
 .form-input:focus {
   outline: none;
-  border-color: #1b4332;
-  box-shadow: 0 0 0 3px rgba(27, 67, 50, 0.15);
+  border-color: #3498DB;
+  box-shadow: 0 0 0 3px var(--shadow-blue);
 }
 
 .form-input::placeholder {
@@ -222,19 +238,21 @@ body {
 .btn-submit {
   width: 100%;
   padding: 0.875rem 1.5rem;
-  background: #1b4332;
-  color: #fff;
+  background: #3498DB;
+  color: #FFFFFF;
   font-weight: 600;
   font-size: 1rem;
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  transition: background 0.2s ease, transform 0.2s ease;
+  box-shadow: 0 4px 14px var(--shadow-blue);
+  transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .btn-submit:hover {
-  background: #143829;
+  background: #2980B9;
   transform: translateY(-1px);
+  box-shadow: 0 6px 20px var(--shadow-blue);
 }
 
 .btn-submit:active {
@@ -277,7 +295,7 @@ body {
   aspect-ratio: 4/5;
   max-width: 22rem;
   margin: 0 auto;
-  box-shadow: 0 24px 48px rgba(45, 42, 38, 0.12);
+  box-shadow: 0 24px 48px var(--shadow-blue);
 }
 
 @media (min-width: 1024px) {
@@ -293,7 +311,7 @@ body {
   left: 0;
   right: 0;
   padding: 1.5rem 1.25rem;
-  background: linear-gradient(to top, rgba(27, 67, 50, 0.85), transparent);
+  background: linear-gradient(to top, rgba(41, 128, 185, 0.85), transparent);
 }
 
 .section-label {
@@ -301,7 +319,7 @@ body {
   font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: #1b4332;
+  color: #2980B9;
   margin-bottom: 0.5rem;
 }
 
@@ -348,8 +366,8 @@ body {
 
 .teacher-badges li {
   padding: 0.5rem 1rem;
-  background: rgba(27, 67, 50, 0.08);
-  color: #1b4332;
+  background: rgba(52, 152, 219, 0.15);
+  color: #2980B9;
   font-size: 0.875rem;
   font-weight: 500;
   border-radius: 999px;
@@ -361,8 +379,8 @@ body {
 
 /* ----- Learn section ----- */
 .section-learn {
-  background: #faf7f2;
-  border-top: 1px solid rgba(45, 42, 38, 0.06);
+  background: #f0f7fc;
+  border-top: 1px solid rgba(41, 128, 185, 0.1);
 }
 
 .learn-grid {
@@ -388,14 +406,15 @@ body {
   background: #fff;
   padding: 1.5rem 1.25rem;
   border-radius: 12px;
-  border: 1px solid rgba(45, 42, 38, 0.08);
-  border-left: 4px solid #1b4332;
+  border: 1px solid rgba(41, 128, 185, 0.12);
+  border-left: 4px solid #3498DB;
+  box-shadow: 0 4px 16px var(--shadow-blue);
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .learn-card:hover {
-  border-left-color: #c44536;
-  box-shadow: 0 8px 24px rgba(45, 42, 38, 0.06);
+  border-left-color: #2980B9;
+  box-shadow: 0 8px 24px var(--shadow-blue);
 }
 
 .learn-icon {
@@ -409,13 +428,13 @@ body {
 }
 
 .learn-icon--green {
-  background: rgba(27, 67, 50, 0.12);
-  color: #1b4332;
+  background: rgba(52, 152, 219, 0.15);
+  color: #2980B9;
 }
 
 .learn-icon--terracotta {
-  background: rgba(196, 69, 54, 0.12);
-  color: #c44536;
+  background: rgba(93, 173, 226, 0.3);
+  color: #2980B9;
 }
 
 .learn-card-title {
@@ -447,7 +466,7 @@ body {
 }
 
 .opinions-pagination .swiper-pagination-bullet {
-  background: #1b4332;
+  background: #3498DB;
   opacity: 0.35;
   width: 8px;
   height: 8px;
@@ -461,11 +480,12 @@ body {
 
 /* Opinion card (from JS) overrides */
 .section-opinions .opinion-card {
-  background: #faf7f2;
-  border: 1px solid rgba(45, 42, 38, 0.08);
+  background: #fff;
+  border: 1px solid rgba(41, 128, 185, 0.12);
   border-radius: 12px;
   padding: 1.5rem 1.75rem;
   height: 100%;
+  box-shadow: 0 4px 16px var(--shadow-blue);
 }
 
 .section-opinions .opinion-header {
@@ -664,8 +684,8 @@ body {
 
 /* ----- Footer ----- */
 .footer {
-  background: #0d261c;
-  color: rgba(255, 255, 255, 0.65);
+  background: #2980B9;
+  color: rgba(255, 255, 255, 0.85);
   font-size: 0.8125rem;
   text-align: center;
   padding: 1.5rem 1rem;
