@@ -21,6 +21,13 @@
   animation: pulse-slow 6s ease-in-out infinite;
 }
 
+  @keyframes float {
+    0%, 100% { transform: translateY(0) rotate(0); }
+    50% { transform: translateY(-10px) rotate(2deg); }
+  }
+  .animate-float {
+    animation: float 5s ease-in-out infinite;
+  }
 html {
   scroll-behavior: smooth;
 }
@@ -737,64 +744,40 @@ body {
   height: auto;
   display: block;
 }
-
-/* ----- Testimonials shorts (pastdan tepaga / tepadan pastga) ----- */
-.section-testimonials-shorts {
-  padding: 2.5rem 0;
-  background: linear-gradient(180deg, var(--blue-darkest) 0%, var(--blue-darker) 100%);
-}
-
-.shorts-tracks {
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
-  align-items: flex-start;
-  margin-top: 1.5rem;
-  overflow: hidden;
-}
-
-.shorts-track {
-  width: 140px;
-  height: 280px;
-  overflow: hidden;
-  border-radius: 12px;
-}
-
-.shorts-track-inner {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  animation-duration: 20s;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-}
-
-.shorts-track--up .shorts-track-inner {
-  animation-name: shortsScrollUp;
-}
-
-.shorts-track--down .shorts-track-inner {
-  animation-name: shortsScrollDown;
-}
-
-.shorts-track-inner img {
-  width: 140px;
-  height: 180px;
-  object-fit: cover;
-  border-radius: 12px;
-  flex-shrink: 0;
-}
-
-@keyframes shortsScrollUp {
+@keyframes scrollUp {
   0% { transform: translateY(0); }
   100% { transform: translateY(-50%); }
 }
-
-@keyframes shortsScrollDown {
+@keyframes scrollDown {
   0% { transform: translateY(-50%); }
   100% { transform: translateY(0); }
 }
 
+.animate-scroll-up {
+  animation: scrollUp 25s linear infinite;
+}
+.animate-scroll-down {
+  animation: scrollDown 25s linear infinite;
+}
+
+/* Ustunlarni takrorlash (Cheksizdek ko'rinishi uchun) */
+.animate-scroll-up:hover, .animate-scroll-down:hover {
+  animation-play-state: paused;
+}
+
+/* Fade effekti (Tepa va past qism yoyilib ketishi uchun) */
+.mask-gradient {
+  mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
+  -webkit-mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
+}
+
+@keyframes bounce-x {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(5px); }
+}
+.animate-bounce-x {
+  animation: bounce-x 1s infinite;
+}
 /* ----- About ----- */
 .section-about {
   padding: 2rem 0;
