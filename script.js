@@ -61,8 +61,10 @@ function renderOpinionsSlides() {
 
 // ——— Config (inline; .env is not available in the browser for static sites) ———
 var LANDING_CONFIG = {
-  SUPABASE_URL: 'https://miyoovimtupziuehtcxi.supabase.co',
-  SUPABASE_ANON_KEY: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1peW9vdmltdHVweml1ZWh0Y3hpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjgwMzkwNzMsImV4cCI6MjA4MzYxNTA3M30.aaCqOF-_s5s5AN-_ElrWZWch8nSVHNmQ1fvC4hi2OoY',
+  // SUPABASE_URL: 'https://miyoovimtupziuehtcxi.supabase.co',
+  // SUPABASE_ANON_KEY: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1peW9vdmltdHVweml1ZWh0Y3hpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjgwMzkwNzMsImV4cCI6MjA4MzYxNTA3M30.aaCqOF-_s5s5AN-_ElrWZWch8nSVHNmQ1fvC4hi2OoY',
+  SUPABASE_URL: 'https://oqzluzzctiirxxhxsboc.supabase.co',
+  SUPABASE_ANON_KEY: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9xemx1enpjdGlpcnh4aHhzYm9jIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjkwNTU1NTEsImV4cCI6MjA4NDYzMTU1MX0.fBFFWgbv4teapHpENVums7lrN1Bq5w22enSuDFofbdU",
   SUPABASE_TABLE_LEADS: 'course_leads',
   FACEBOOK_PIXEL_ID: '4212436022332120',
   EVENT_SOURCE_URL: 'https://landingcourse.netlify.app/'
@@ -245,6 +247,22 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 
+  // Team / jamoa carousel (courses section)
+  var swiperTeam = document.querySelector('.swiper-team');
+  if (swiperTeam) {
+    new Swiper('.swiper-team', {
+      slidesPerView: 2,
+      spaceBetween: 12,
+      loop: true,
+      autoplay: { delay: 2500, disableOnInteraction: false },
+      pagination: { el: '.swiper-team-pagination', clickable: true },
+      breakpoints: {
+        480: { slidesPerView: 3 },
+        640: { slidesPerView: 4 }
+      }
+    });
+  }
+
   // Form submit: save to Supabase (course_leads), then success message + Facebook Lead
   var form = document.getElementById('lead-form');
   if (form) {
@@ -287,6 +305,7 @@ document.addEventListener('DOMContentLoaded', function () {
           fbclid: urlData.fbclid || null,
           fbp: fbp || null,
           fbc: fbc || null,
+          status: 'new',
           user_agent: (typeof navigator !== 'undefined' && navigator.userAgent) ? navigator.userAgent : null,
           ip_address: ipAddress || null
         };

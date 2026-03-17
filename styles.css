@@ -4,14 +4,21 @@
   --blue-primary: #3498DB;
   --blue-dark: #2980B9;
   --blue-light: #5DADE2;
+  --blue-darker: #1f6fb2;
+  --blue-darkest: #152d42;
   --white: #FFFFFF;
   --shadow-blue: rgba(41, 128, 185, 0.3);
-  /* Complementary: text and surfaces */
   --ink: #1e293b;
   --ink-muted: #475569;
   --surface: #f8fafc;
   --surface-warm: #f1f5f9;
-  --phone-width: 768px;
+}
+@keyframes pulse-slow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+.animate-pulse-slow {
+  animation: pulse-slow 6s ease-in-out infinite;
 }
 
 html {
@@ -23,8 +30,7 @@ body {
   line-height: 1.6;
   font-size: 1rem;
   color: var(--ink);
-  background: var(--surface-warm);
-  max-width: var(--phone-width);
+  background: var(--surface-warm) url('https://masterielts.uz/images/bg2.webp') center/cover no-repeat fixed;
   min-height: 100vh;
   margin: 0 auto !important;
 }
@@ -38,9 +44,92 @@ body {
 .container {
   width: 100%;
   max-width: none;
+  margin: 0 auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
-/* ----- Top bar ----- */
+/* ----- Site header (sticky, Master IELTS dark style) ----- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(255, 255, 255, 0.98);
+  border-bottom: 1px solid rgba(41, 128, 185, 0.12);
+  padding: 0.75rem 0;
+}
+
+.site-header--dark {
+  background: var(--blue-darkest);
+  border-bottom-color: rgba(255, 255, 255, 0.08);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.header-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  color: var(--ink);
+  font-family: 'Poppins', system-ui, sans-serif;
+  font-weight: 800;
+  font-size: 1.25rem;
+}
+
+.header-logo--light .header-logo-text,
+.header-logo--light .header-logo-accent {
+  color: #fff;
+}
+
+.header-logo-img {
+  width: 2.25rem;
+  height: 2.25rem;
+  object-fit: contain;
+}
+
+.header-logo-accent {
+  font-style: italic;
+  font-weight: 600;
+  margin-right: 0.15rem;
+}
+
+.header-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  align-items: center;
+}
+
+.header-nav-link {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--ink-muted);
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: color 0.2s ease;
+}
+
+.header-nav-link:hover {
+  color: #2980B9;
+}
+
+.header-nav-link--light {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.header-nav-link--light:hover {
+  color: #fff;
+}
+
+/* ----- Top bar (legacy) ----- */
 .top-bar {
   background: rgba(250, 247, 242, 0.95);
   border-bottom: 1px solid rgba(45, 42, 38, 0.08);
@@ -49,96 +138,117 @@ body {
   z-index: 50;
 }
 
-/* ----- Hero ----- */
+/* ----- Hero (dark, pain-based) ----- */
 .hero-section {
+  padding: 2.5rem 0 3rem;
   background:
-  radial-gradient(
-    circle at 20% 20%,
-    rgba(255,255,255,0.25),
-    transparent 40%
-  ),
-  radial-gradient(
-    circle at 80% 70%,
-    rgba(93,173,226,0.35),
-    transparent 45%
-  ),
-  linear-gradient(
-    135deg,
-    #1f6fb2 0%,
-    #2980B9 35%,
-    #3498DB 65%,
-    #5DADE2 100%
-  );  
-  min-height: 0;
+    radial-gradient(circle at 20% 20%, rgba(255,255,255,0.12), transparent 45%),
+    radial-gradient(circle at 85% 60%, rgba(93,173,226,0.25), transparent 40%),
+    linear-gradient(160deg, var(--blue-darkest) 0%, var(--blue-darker) 40%, #2980B9 85%, #3498DB 100%);
 }
 
-.hero-layout {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  align-items: stretch;
-}
 
-.hero-label {
-  font-size: 0.8125rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: #FFFFFF;
-  margin-bottom: 0.75rem;
+.hero-inner {
+  text-align: center;
+  max-width: 36rem;
+  margin: 0 auto;
 }
 
 .hero-title {
   font-family: 'Fraunces', Georgia, serif;
-  font-size: clamp(1.75rem, 6vw, 2.25rem);
+  font-size: clamp(1.85rem, 7vw, 2.75rem);
   font-weight: 700;
-  line-height: 1.2;
-  color: #FFFFFF;
-  margin-bottom: 1rem;
+  line-height: 1.15;
+  color: #fff;
+  margin: 0;
+  letter-spacing: 0.02em;
 }
 
-.hero-title-accent {
+.hero-tagline {
+  font-size: 1.125rem;
+  font-weight: 600;
   color: rgba(255, 255, 255, 0.95);
+  margin: 1rem 0 0.5rem;
+  line-height: 1.4;
 }
 
 .hero-desc {
-  color: rgba(255, 255, 255, 0.92);
-  max-width: none;
-  margin-bottom: 1.25rem;
-  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.9);
   font-size: 0.9375rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
 }
 
-.hero-features {
-  list-style: none;
-  padding: 0;
-  margin: 0 0 2rem 0;
-  color: rgba(255, 255, 255, 0.95);
-  font-size: 0.9375rem;
+.hero-teacher-wrap {
+  margin: 1.5rem 0;
 }
 
-.hero-features li {
-  position: relative;
-  padding-left: 1.5rem;
-  margin-bottom: 0.6rem;
-}
-
-.hero-features li::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0.5rem;
-  width: 6px;
-  height: 6px;
+.hero-teacher-photo {
+  width: 180px;
+  height: 180px;
+  margin: 1rem auto;
   border-radius: 50%;
-  background: #FFFFFF;
+  overflow: hidden;
+  border: 3px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
 }
 
-.hero-trust {
-  font-size: 0.9375rem;
+.hero-teacher-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
-/* High-conversion hero CTA */
+/* Legacy hero classes (optional use) */
+.hero-label { font-size: 0.8125rem; font-weight: 600; color: rgba(255,255,255,0.9); }
+.hero-title-accent { color: rgba(255,255,255,0.95); }
+.hero-features { list-style: none; padding: 0; margin: 0; }
+.hero-trust { font-size: 0.9375rem; }
+
+/* ----- Pill buttons (Master IELTS style) ----- */
+.btn-pill {
+  display: inline-block;
+  min-height: 52px;
+  padding: 0.875rem 1.75rem;
+  font-weight: 700;
+  font-size: 1rem;
+  border-radius: 9999px;
+  text-decoration: none;
+  text-align: center;
+  line-height: 1.3;
+  -webkit-tap-highlight-color: transparent;
+  transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-pill--primary {
+  background: var(--blue-primary);
+  color: #fff;
+  box-shadow: 0 4px 20px var(--shadow-blue);
+}
+
+.btn-pill--primary:hover {
+  background: var(--blue-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px var(--shadow-blue);
+}
+
+.btn-pill--light {
+  background: #fff;
+  color: var(--blue-dark);
+}
+
+.btn-pill--light:hover {
+  background: #f8fafc;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.15);
+}
+
+.btn-pill.btn-submit {
+  width: 100%;
+}
+
 .btn-hero-cta {
   display: inline-block;
   min-height: 52px;
@@ -147,14 +257,13 @@ body {
   color: #1f6fb2;
   font-weight: 700;
   font-size: 1.0625rem;
-  border-radius: 12px;
+  border-radius: 9999px;
   text-decoration: none;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
   transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
   text-align: center;
   line-height: 1.3;
   -webkit-tap-highlight-color: transparent;
-  border: 2px solid rgba(255, 255, 255, 0.9);
 }
 
 .btn-hero-cta:hover {
@@ -163,15 +272,68 @@ body {
   box-shadow: 0 8px 28px rgba(0, 0, 0, 0.25);
 }
 
+/* ----- Tip blocks (Master IELTS style) ----- */
+.section-tip {
+  padding: 2.5rem 0;
+  background: #fff;
+  border-bottom: 1px solid rgba(41, 128, 185, 0.1);
+}
+
+.section-tip--alt {
+  background: #f8fafc;
+}
+
+.tip-heading {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: clamp(1.1rem, 4vw, 1.35rem);
+  font-weight: 700;
+  color: var(--ink);
+  margin: 0 0 1.25rem;
+  line-height: 1.3;
+}
+
+.tip-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.5rem;
+}
+
+.tip-list li {
+  position: relative;
+  padding-left: 1.25rem;
+  margin-bottom: 0.6rem;
+  font-size: 0.9375rem;
+  color: var(--ink-muted);
+  line-height: 1.6;
+}
+
+.tip-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.5rem;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #3498DB;
+}
+
+.tip-cta-text {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin: 0 0 1rem;
+}
+
 .btn-primary {
   display: inline-block;
-  min-height: 48px;
-  padding: 0.875rem 1.5rem;
-  background: #3498DB;
-  color: #FFFFFF;
-  font-weight: 600;
+  min-height: 52px;
+  padding: 0.875rem 1.75rem;
+  background: var(--blue-primary);
+  color: #fff;
+  font-weight: 700;
   font-size: 1rem;
-  border-radius: 10px;
+  border-radius: 9999px;
   text-decoration: none;
   box-shadow: 0 4px 14px var(--shadow-blue);
   transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
@@ -181,15 +343,15 @@ body {
 }
 
 .btn-primary:hover {
-  background: #2980B9;
-  transform: translateY(-1px);
+  background: var(--blue-dark);
+  transform: translateY(-2px);
   box-shadow: 0 6px 20px var(--shadow-blue);
 }
 
 .btn-cta-alt {
-  min-height: 48px;
+  min-height: 52px;
   padding: 0.875rem 1.75rem;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .hero-media {
@@ -236,8 +398,16 @@ body {
   -webkit-tap-highlight-color: transparent;
 }
 
-/* ----- Pain points ----- */
+/* ----- Section CTA ----- */
+.section-cta {
+  text-align: center;
+  margin-top: 1.5rem;
+}
+
+/* ----- Pain section ----- */
 .section-pain {
+  padding: 2.5rem 0;
+  background: #fff;
   border-bottom: 1px solid rgba(41, 128, 185, 0.1);
 }
 
@@ -250,9 +420,9 @@ body {
 .pain-card {
   background: #f8fafc;
   border: 1px solid rgba(41, 128, 185, 0.12);
-  border-radius: 14px;
+  border-radius: 16px;
   padding: 1.5rem 1.25rem;
-  border-left: 4px solid #3498DB;
+  border-left: 4px solid var(--blue-primary);
   transition: box-shadow 0.2s ease;
 }
 
@@ -282,10 +452,56 @@ body {
   margin: 0;
 }
 
+/* ----- Solution (result system) - dark section ----- */
+.section-dark {
+  background: linear-gradient(180deg, var(--blue-darkest) 0%, var(--blue-darker) 100%);
+  color: #fff;
+  padding: 2.5rem 0;
+}
+
+.section-solution .section-title--light {
+  color: #fff;
+  margin-bottom: 0.5rem;
+}
+
+.section-intro--light {
+  color: rgba(255, 255, 255, 0.88);
+  font-size: 0.9375rem;
+  margin-bottom: 1.25rem;
+  line-height: 1.6;
+}
+
+.solution-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.5rem;
+}
+
+.solution-list li {
+  position: relative;
+  padding-left: 1.25rem;
+  margin-bottom: 0.6rem;
+  font-size: 0.9375rem;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.55;
+}
+
+.solution-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.5rem;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--blue-light);
+}
+
 /* ----- Results strip ----- */
 .section-results-strip {
-  background: linear-gradient(135deg, #1f6fb2 0%, #2980B9 50%, #3498DB 100%);
+  background: linear-gradient(135deg, var(--blue-darkest) 0%, var(--blue-darker) 50%, #2980B9 100%);
   color: #fff;
+  padding: 2.5rem 0;
 }
 
 .results-strip-grid {
@@ -316,17 +532,296 @@ body {
   font-weight: 500;
 }
 
-/* ----- Offer / urgency ----- */
-.section-offer {
+.results-strip-footer {
+  text-align: center;
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.85);
+  margin: 1rem 0 0;
+}
+
+.section-title--light {
+  color: #fff;
+  margin-bottom: 1rem;
+}
+
+.section-label--light {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* ----- Nima qilish kerak? ----- */
+.section-nima-qilish {
+  padding: 2.5rem 0;
+  background-color: rgba(21, 45, 66, 0.85);
+  background-size: cover;
+  background-position: center;
+}
+
+.nima-qilish-title {
+  color: #fff;
+  margin-bottom: 1.5rem;
+}
+
+.nima-qilish-card {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+  padding: 1.5rem;
+}
+
+.nima-qilish-group-img {
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 1.25rem;
+  aspect-ratio: 16/10;
+}
+
+.nima-qilish-group-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.nima-qilish-content {
+  padding: 0;
+}
+
+.nima-qilish-heading {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin: 0.75rem 0 0.5rem;
+}
+
+.nima-qilish-heading:first-of-type {
+  margin-top: 0;
+}
+
+.nima-qilish-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1rem;
+}
+
+.nima-qilish-list li {
+  position: relative;
+  padding-left: 1.25rem;
+  margin-bottom: 0.4rem;
+  font-size: 0.9375rem;
+  color: var(--ink-muted);
+  line-height: 1.5;
+}
+
+.nima-qilish-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.5rem;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--blue-primary);
+}
+
+.nima-qilish-cta-text {
+  font-weight: 600;
+  color: var(--ink);
+  margin: 0.5rem 0 1rem;
+}
+
+/* ----- Mentors section (eagle) ----- */
+.section-mentors-head {
+  position: relative;
+}
+
+.section-mentors-eagle {
+  position: absolute;
+  top: -0.5rem;
+  right: 0;
+  width: 80px;
+  height: auto;
+  opacity: 0.9;
+}
+
+.section-mentors-eagle img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ----- Courses (Bizning Kurslar) ----- */
+.section-courses {
+  padding: 2.5rem 0;
   background: #f0f7fc;
   border-top: 1px solid rgba(41, 128, 185, 0.1);
 }
 
-.offer-card {
+.courses-grid {
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: 1fr;
+  margin-top: 1.5rem;
+}
+
+.course-card {
   background: #fff;
-  border: 2px solid #3498DB;
+  border: 1px solid rgba(41, 128, 185, 0.15);
+  border-radius: 14px;
+  padding: 1.5rem 1.25rem;
+  box-shadow: 0 4px 16px var(--shadow-blue);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.course-card:hover {
+  border-color: rgba(41, 128, 185, 0.3);
+  box-shadow: 0 8px 24px var(--shadow-blue);
+}
+
+.course-card-title {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin: 0 0 0.5rem;
+  line-height: 1.3;
+}
+
+.course-card-desc {
+  font-size: 0.9375rem;
+  color: var(--ink-muted);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Courses: team carousel (kichik o'lchamda) */
+.courses-team-carousel-wrap {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(41, 128, 185, 0.15);
+}
+
+.swiper-team {
+  padding-bottom: 2rem;
+}
+
+.swiper-team .swiper-slide {
+  border-radius: 12px;
+  overflow: hidden;
+  aspect-ratio: 1;
+  max-width: 120px;
+  margin: 0 auto;
+}
+
+.swiper-team .swiper-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.swiper-team-pagination {
+  position: relative;
+  margin-top: 1rem;
+}
+
+.courses-master-image {
+  margin-top: 2rem;
   border-radius: 16px;
-  padding: 1.75rem 1.5rem;
+  overflow: hidden;
+  box-shadow: 0 8px 32px var(--shadow-blue);
+}
+
+.courses-master-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ----- Testimonials shorts (pastdan tepaga / tepadan pastga) ----- */
+.section-testimonials-shorts {
+  padding: 2.5rem 0;
+  background: linear-gradient(180deg, var(--blue-darkest) 0%, var(--blue-darker) 100%);
+}
+
+.shorts-tracks {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: 1.5rem;
+  overflow: hidden;
+}
+
+.shorts-track {
+  width: 140px;
+  height: 280px;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.shorts-track-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  animation-duration: 20s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.shorts-track--up .shorts-track-inner {
+  animation-name: shortsScrollUp;
+}
+
+.shorts-track--down .shorts-track-inner {
+  animation-name: shortsScrollDown;
+}
+
+.shorts-track-inner img {
+  width: 140px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 12px;
+  flex-shrink: 0;
+}
+
+@keyframes shortsScrollUp {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-50%); }
+}
+
+@keyframes shortsScrollDown {
+  0% { transform: translateY(-50%); }
+  100% { transform: translateY(0); }
+}
+
+/* ----- About ----- */
+.section-about {
+  padding: 2rem 0;
+  background: #fff;
+  border-top: 1px solid rgba(41, 128, 185, 0.1);
+}
+
+.about-text {
+  font-size: 0.9375rem;
+  color: var(--ink-muted);
+  line-height: 1.75;
+  margin: 0;
+  max-width: 40rem;
+}
+
+/* ----- Offer / urgency ----- */
+.section-offer {
+  padding: 2rem 0;
+  background: #fff;
+  border-top: 1px solid rgba(41, 128, 185, 0.1);
+}
+
+.offer-card {
+  background: linear-gradient(145deg, #f8fafc 0%, #fff 100%);
+  border: 2px solid var(--blue-primary);
+  border-radius: 20px;
+  padding: 2rem 1.5rem;
   text-align: center;
   box-shadow: 0 8px 32px var(--shadow-blue);
 }
@@ -364,11 +859,11 @@ body {
   display: inline-block;
   min-height: 52px;
   padding: 0.875rem 1.75rem;
-  background: #2980B9;
+  background: var(--blue-dark);
   color: #fff;
   font-weight: 700;
   font-size: 1rem;
-  border-radius: 12px;
+  border-radius: 9999px;
   text-decoration: none;
   box-shadow: 0 4px 18px var(--shadow-blue);
   transition: background 0.2s ease, transform 0.2s ease;
@@ -376,7 +871,7 @@ body {
 }
 
 .btn-offer:hover {
-  background: #1f6fb2;
+  background: var(--blue-darker);
   transform: translateY(-2px);
   box-shadow: 0 6px 24px var(--shadow-blue);
 }
@@ -455,20 +950,58 @@ body {
   border: 0;
 }
 
-/* ----- Form ----- */
+/* ----- Form (BOG'LANISH) - dark section like ref ----- */
 .section-form {
   background: #f8fafc;
   border-top: 1px solid rgba(41, 128, 185, 0.1);
+  padding: 2.5rem 0;
+}
+
+.section-form--dark {
+  background: linear-gradient(180deg, var(--blue-darker) 0%, var(--blue-darkest) 100%);
+  color: #fff;
+}
+
+.form-heading {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: clamp(1.5rem, 5vw, 2rem);
+  font-weight: 700;
+  color: var(--ink);
+  margin: 0 0 0.5rem;
+  text-align: center;
+  letter-spacing: 0.02em;
+}
+
+.form-heading--light {
+  color: #fff;
+}
+
+.form-subheading {
+  font-size: 0.9375rem;
+  color: var(--ink-muted);
+  text-align: center;
+  margin: 0 0 1.5rem;
+  line-height: 1.5;
+}
+
+.form-subheading--light {
+  color: rgba(255, 255, 255, 0.88);
 }
 
 .form-card {
   width: 100%;
-  margin: 0 auto;
+  margin: 0 auto 1rem;
   padding: 1.5rem 1.25rem;
   background: #fff;
   border: 1px solid rgba(41, 128, 185, 0.18);
   border-radius: 16px;
   box-shadow: 0 8px 32px var(--shadow-blue);
+}
+
+.form-card--dark {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.12);
+  border-radius: 16px;
 }
 
 .form-title {
@@ -488,8 +1021,13 @@ body {
 .form-contact-note {
   font-size: 0.9375rem;
   color: var(--ink);
-  margin-bottom: 1.5rem;
+  margin: 0;
   font-weight: 500;
+  text-align: center;
+}
+
+.form-contact-note--light {
+  color: rgba(255, 255, 255, 0.88);
 }
 
 .form-contact-link {
@@ -501,6 +1039,29 @@ body {
 
 .form-contact-link:hover {
   text-decoration: underline;
+}
+
+.form-contact-link--light {
+  color: var(--blue-light);
+}
+
+.form-contact-link--light:hover {
+  color: #fff;
+}
+
+.form-label--light {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.form-input--dark {
+  background: rgba(255, 255, 255, 0.95);
+  border-color: rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+}
+
+.form-input--dark:focus {
+  border-color: var(--blue-light);
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.25);
 }
 
 .form-fields {
@@ -542,24 +1103,14 @@ body {
 
 .btn-submit {
   width: 100%;
-  min-height: 48px;
+  min-height: 52px;
   padding: 0.875rem 1.5rem;
-  background: #3498DB;
-  color: #FFFFFF;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 1rem;
   border: none;
-  border-radius: 10px;
+  border-radius: 9999px;
   cursor: pointer;
-  box-shadow: 0 4px 14px var(--shadow-blue);
-  transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
   -webkit-tap-highlight-color: transparent;
-}
-
-.btn-submit:hover {
-  background: #2980B9;
-  transform: translateY(-1px);
-  box-shadow: 0 6px 20px var(--shadow-blue);
 }
 
 .btn-submit:active {
@@ -569,6 +1120,8 @@ body {
 /* ----- Teacher ----- */
 .section-teacher {
   background: #fff;
+  padding: 2.5rem 0;
+  border-top: 1px solid rgba(41, 128, 185, 0.08);
 }
 
 .teacher-layout {
@@ -578,20 +1131,20 @@ body {
   align-items: stretch;
 }
 
-.teacher-text {
-  order: 2;
-}
-
 .teacher-photo {
   order: 1;
   position: relative;
   border-radius: 16px;
   overflow: hidden;
   aspect-ratio: 4/5;
-  max-width: 100%;
+  max-width: 280px;
   margin: 0 auto;
   width: 100%;
   box-shadow: 0 12px 32px var(--shadow-blue);
+}
+
+.teacher-text {
+  order: 2;
 }
 
 .teacher-photo-caption {
@@ -736,7 +1289,13 @@ body {
 
 /* ----- Opinions ----- */
 .section-opinions {
-  background: #fff;
+  background: #f8fafc;
+  padding: 2.5rem 0;
+  border-top: 1px solid rgba(41, 128, 185, 0.1);
+}
+
+.section-opinions-inner {
+  padding: 0;
 }
 
 .swiper-opinions .swiper-slide {
@@ -941,6 +1500,7 @@ body {
   font-weight: 700;
 
   background: linear-gradient(45deg,#ff9770,#e07a5f);
+  background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 
@@ -1054,12 +1614,83 @@ body {
 }
 
 .footer {
-  background: #2980B9;
-  color: rgba(255, 255, 255, 0.85);
+  background: var(--blue-darkest);
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.875rem;
+  padding: 2rem 0;
+  padding-bottom: calc(2rem + env(safe-area-inset-bottom, 0px));
+}
+
+.footer-inner {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: 1fr;
+}
+
+.footer-contact,
+.footer-links,
+.footer-hours,
+.footer-map,
+.footer-map-placeholder {
+  margin: 0;
+}
+
+.footer-links-title {
+  font-weight: 700;
+  font-size: 0.9375rem;
+  color: #fff;
+  margin: 0 0 0.5rem;
+}
+
+.footer-phone {
+  margin: 0 0 0.25rem;
+}
+
+.footer-address {
+  margin: 0;
   font-size: 0.8125rem;
-  text-align: center;
-  padding: 1.25rem 1rem;
-  padding-bottom: calc(1.25rem + env(safe-area-inset-bottom, 0px));
+  opacity: 0.9;
+}
+
+.footer-links-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-links-list li {
+  margin-bottom: 0.35rem;
+}
+
+.footer-links-list a {
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.footer-links-list a:hover {
+  text-decoration: underline;
+}
+
+.footer-hours p,
+.footer-map p,
+.footer-map-placeholder p {
+  margin: 0.25rem 0 0;
+  font-size: 0.8125rem;
+  opacity: 0.9;
+}
+
+.footer-map-link {
+  display: inline-block;
+  margin-top: 0.5rem;
+  font-weight: 600;
+  color: #fff;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.footer-map-link:hover {
+  text-decoration: underline;
 }
 
 .footer p {
