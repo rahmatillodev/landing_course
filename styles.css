@@ -228,7 +228,25 @@ body {
 .form-intro {
   color: var(--ink-muted);
   font-size: 0.9375rem;
+  margin-bottom: 0.75rem;
+}
+
+.form-contact-note {
+  font-size: 0.9375rem;
+  color: var(--ink);
   margin-bottom: 1.5rem;
+  font-weight: 500;
+}
+
+.form-contact-link {
+  color: #2980B9;
+  font-weight: 600;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.form-contact-link:hover {
+  text-decoration: underline;
 }
 
 .form-fields {
@@ -390,8 +408,15 @@ body {
   border-radius: 999px;
 }
 
+.teacher-cta-text {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 1rem;
+}
+
 .teacher-text .btn-primary {
-  margin-top: 0.5rem;
+  margin-top: 0;
 }
 
 /* ----- Learn section ----- */
@@ -687,6 +712,93 @@ body {
 }
 
 /* ----- Footer ----- */
+/* ----- Success popup ----- */
+.popup-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+}
+.popup-overlay.is-visible {
+  opacity: 1;
+  visibility: visible;
+}
+.popup-box {
+  background: var(--white);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  max-width: 20rem;
+  width: 100%;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  transform: scale(0.95);
+  transition: transform 0.2s ease;
+}
+.popup-overlay.is-visible .popup-box {
+  transform: scale(1);
+}
+.popup-icon-wrap {
+  width: 3rem;
+  height: 3rem;
+  margin: 0 auto 1rem;
+  background: rgba(52, 152, 219, 0.15);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.popup-icon {
+  width: 1.75rem;
+  height: 1.75rem;
+  color: var(--blue-primary);
+}
+.popup-title {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin: 0 0 0.5rem;
+}
+.popup-message {
+  font-size: 0.9375rem;
+  color: var(--ink-muted);
+  margin: 0 0 1.25rem;
+  line-height: 1.5;
+}
+
+.popup-contact-link {
+  color: var(--blue-primary);
+  font-weight: 600;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.popup-contact-link:hover {
+  text-decoration: underline;
+}
+.popup-close {
+  display: inline-block;
+  padding: 0.625rem 1.5rem;
+  background: var(--blue-primary);
+  color: var(--white);
+  border: none;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+.popup-close:hover {
+  background: var(--blue-dark);
+}
+
 .footer {
   background: #2980B9;
   color: rgba(255, 255, 255, 0.85);
@@ -694,6 +806,25 @@ body {
   text-align: center;
   padding: 1.25rem 1rem;
   padding-bottom: calc(1.25rem + env(safe-area-inset-bottom, 0px));
+}
+
+.footer p {
+  margin: 0 0 0.5rem;
+}
+
+.footer p:last-child {
+  margin-bottom: 0;
+}
+
+.footer-contact-link {
+  color: #fff;
+  font-weight: 600;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.footer-contact-link:hover {
+  text-decoration: underline;
 }
 
 /* ----- Video overlay when playing ----- */

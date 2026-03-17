@@ -59,7 +59,8 @@ var LANDING_CONFIG = {
   SUPABASE_URL: 'https://miyoovimtupziuehtcxi.supabase.co',
   SUPABASE_ANON_KEY: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1peW9vdmltdHVweml1ZWh0Y3hpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjgwMzkwNzMsImV4cCI6MjA4MzYxNTA3M30.aaCqOF-_s5s5AN-_ElrWZWch8nSVHNmQ1fvC4hi2OoY',
   SUPABASE_TABLE_LEADS: 'course_leads',
-  FACEBOOK_PIXEL_ID: '4212436022332120'
+  FACEBOOK_PIXEL_ID: '4212436022332120',
+  EVENT_SOURCE_URL: 'https://landingcourse.netlify.app/'
 };
 
 function getConfig() {
@@ -122,6 +123,36 @@ function getFbc(fbclid) {
   return (fbclid ? 'fb.1.' + Math.floor(Date.now() / 1000) + '.' + fbclid : '') || '';
 }
 
+// ——— Client IP (from public API; used for Supabase + Meta Lead) ———
+function fetchClientIp(callback) {
+  var timeout = 4000;
+  var xhr = new XMLHttpRequest();
+  var done = false;
+  function finish(ip) {
+    if (done) return;
+    done = true;
+    callback(ip || null);
+  }
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState !== 4) return;
+    try {
+      if (xhr.status === 200) {
+        var data = JSON.parse(xhr.responseText);
+        finish(data && data.ip ? data.ip : null);
+      } else {
+        finish(null);
+      }
+    } catch (e) {
+      finish(null);
+    }
+  };
+  xhr.ontimeout = function () { finish(null); };
+  xhr.onerror = function () { finish(null); };
+  xhr.open('GET', 'https://api.ipify.org?format=json', true);
+  xhr.timeout = timeout;
+  xhr.send();
+}
+
 // ——— Save lead to Supabase and fire Facebook Lead ———
 function getSupabaseClient() {
   var config = getConfig();
@@ -154,16 +185,41 @@ function fireFacebookLead(leadPayload) {
   var config = getConfig();
   var pixelId = config.FACEBOOK_PIXEL_ID;
   if (!pixelId || typeof fbq !== 'function') return;
+  var eventTime = Math.floor(Date.now() / 1000);
+  var eventSourceUrl = (typeof window !== 'undefined' && window.location && window.location.href) ? window.location.href : (config.EVENT_SOURCE_URL || 'https://landingcourse.netlify.app/');
+  var params = {
+    event_time: eventTime,
+    event_source_url: eventSourceUrl
+  };
+  if (leadPayload && leadPayload.ip_address) {
+    params.client_ip_address = leadPayload.ip_address;
+  }
   try {
     console.log('[Facebook] Sending event: Lead', {
       pixel_id: pixelId,
       event: 'Lead',
+      event_time: eventTime,
+      event_source_url: eventSourceUrl,
       lead_context: leadPayload || null
     });
-    fbq('track', 'Lead');
+    fbq('track', 'Lead', params);
   } catch (e) {
     console.warn('[Facebook] Lead event error:', e);
   }
+}
+
+function showSuccessPopup() {
+  var popup = document.getElementById('success-popup');
+  if (!popup) return;
+  popup.classList.add('is-visible');
+  popup.setAttribute('aria-hidden', 'false');
+}
+
+function hideSuccessPopup() {
+  var popup = document.getElementById('success-popup');
+  if (!popup) return;
+  popup.classList.remove('is-visible');
+  popup.setAttribute('aria-hidden', 'true');
 }
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -202,59 +258,63 @@ document.addEventListener('DOMContentLoaded', function () {
       var fbp = getFbpCookie();
       var fbc = getFbc(urlData.fbclid);
 
-      var payload = {
-        full_name: name,
-        phone: phone,
-        utm_source: urlData.utm_source || null,
-        utm_medium: urlData.utm_medium || null,
-        utm_campaign: urlData.utm_campaign || null,
-        utm_term: urlData.utm_term || null,
-        utm_content: urlData.utm_content || null,
-        fbclid: urlData.fbclid || null,
-        fbp: fbp || null,
-        fbc: fbc || null,
-        user_agent: (typeof navigator !== 'undefined' && navigator.userAgent) ? navigator.userAgent : null
-      };
-
       var btn = form.querySelector('button[type="submit"]');
       if (btn) {
         btn.disabled = true;
         btn.textContent = 'Yuborilmoqda…';
       }
 
-      saveLeadToSupabase(payload, function () {
-        fireFacebookLead(payload);
-        alert("Ma'lumotlaringiz qabul qilindi! Tez orada siz bilan bog'lanamiz.");
-        form.reset();
-        if (btn) {
-          btn.disabled = false;
-          btn.textContent = 'Yuborish';
-        }
-      }, function (err) {
-        alert("Xatolik yuz berdi. Iltimos, keyinroq urinib ko'ring yoki biz bilan bog'laning.");
-        console.error('[Lead]', err);
-        if (btn) {
-          btn.disabled = false;
-          btn.textContent = 'Yuborish';
-        }
+      fetchClientIp(function (ipAddress) {
+        var eventTime = Math.floor(Date.now() / 1000);
+        var eventSourceUrl = (typeof window !== 'undefined' && window.location && window.location.href) ? window.location.href : (getConfig().EVENT_SOURCE_URL || 'https://landingcourse.netlify.app/');
+
+        var payload = {
+          full_name: name,
+          phone: phone,
+          event: 'Lead',
+          event_time: eventTime,
+          event_source_url: eventSourceUrl,
+          utm_source: urlData.utm_source || null,
+          utm_medium: urlData.utm_medium || null,
+          utm_campaign: urlData.utm_campaign || null,
+          utm_term: urlData.utm_term || null,
+          utm_content: urlData.utm_content || null,
+          fbclid: urlData.fbclid || null,
+          fbp: fbp || null,
+          fbc: fbc || null,
+          user_agent: (typeof navigator !== 'undefined' && navigator.userAgent) ? navigator.userAgent : null,
+          ip_address: ipAddress || null
+        };
+
+        saveLeadToSupabase(payload, function () {
+          fireFacebookLead(payload);
+          showSuccessPopup();
+          form.reset();
+          if (btn) {
+            btn.disabled = false;
+            btn.textContent = 'Yuborish';
+          }
+        }, function (err) {
+          alert("Xatolik yuz berdi. Iltimos, keyinroq urinib ko'ring yoki biz bilan bog'laning.");
+          console.error('[Lead]', err);
+          if (btn) {
+            btn.disabled = false;
+            btn.textContent = 'Yuborish';
+          }
+        });
       });
     });
   }
 
-  // Hero video: hide overlay when playing, show on pause
-  var video = document.getElementById('hero-video');
-  var overlay = document.getElementById('hero-video-overlay');
-  if (video && overlay) {
-    video.addEventListener('play', function () {
-      overlay.style.opacity = '0';
-      overlay.style.pointerEvents = 'none';
-    });
-    video.addEventListener('pause', function () {
-      overlay.style.opacity = '1';
-      overlay.style.pointerEvents = '';
-    });
-    overlay.addEventListener('click', function () {
-      video.play();
+  // Success popup: close button and overlay click
+  var successPopup = document.getElementById('success-popup');
+  var successPopupClose = document.getElementById('success-popup-close');
+  if (successPopupClose) {
+    successPopupClose.addEventListener('click', hideSuccessPopup);
+  }
+  if (successPopup) {
+    successPopup.addEventListener('click', function (e) {
+      if (e.target === successPopup) hideSuccessPopup();
     });
   }
 });

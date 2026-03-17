@@ -6,6 +6,10 @@ create table if not exists public.course_leads (
   full_name text not null,
   phone text not null,
   created_at timestamptz not null default now(),
+  -- Event context (for Facebook / CAPI parity)
+  event text,
+  event_time bigint,
+  event_source_url text,
   -- Attribution for Facebook / ads
   utm_source text,
   utm_medium text,

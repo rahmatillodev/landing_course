@@ -14,9 +14,12 @@
     <meta name="google" content="notranslate">
     <title>Qo'qonda ilk bor CD IELTS kursi</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet" />
+    
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
@@ -26,6 +29,7 @@
             fontFamily: {
               display: ['Fraunces', 'Georgia', 'serif'],
               sans: ['DM Sans', 'system-ui', 'sans-serif'],
+              poppins: ['Poppins', 'system-ui', 'sans-serif'],
             },
             colors: {
               cream: '#faf7f2',
@@ -69,7 +73,7 @@
               Qo'qonda ilk bor CD IELTS kursi
             </h1>
             <p class="hero-desc">
-              Darslar <strong>markazda offline</strong> — haftada 5 kun, 4-6 oy davomida. Kelganlarning darajasi va kamchiliklari o'rganiladi, kamchiliklar tuzatiladi va 7.0+ ballga tayyorlanadi.
+              <strong>Markazda offline</strong> — haftada 5 kun, 4-6 oy. Darajangiz o'rganiladi, kamchiliklar tuzatiladi va <strong>7.0+ ball</strong>ga tayyorlanasiz.
             </p>
             <ul class="hero-features">
               <li>Markazda offline — haftada 5 kun, 4-6 oy</li>
@@ -77,16 +81,11 @@
               <li>O'zimizning platformamiz va ixtiyoriy haftalik testlar</li>
               <li>CD IELTS formati bilan o'rganish va tayyorlanish</li>
             </ul>
-            <a href="#form" class="btn-primary">Kursga yozilish</a>
+            <a href="#form" class="text-white bg-sky-800 hover:bg-sky-900 px-4 py-2 rounded-md text-lg shadow-md">Kursga yozilish</a>
           </div>
-          <div class="hero-media">
-            <div class="image-wrap">
-              <img
-                src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=800"
-                alt="IELTS kompyuter kursi — sinf rasmi"
-                class="w-full h-full object-cover rounded-lg shadow-md"
-              />
-            </div>
+          <div class="flex items-center gap-2 justify-start order-[-1] font-poppins text-white">
+            <img class="w-10 h-10" src="./assets/logo.png" alt="">
+            <h1 class="text-2xl font-black"><span class="italic mr-1 font-semibold">IELT</span>SCORE</h1>
           </div>
         </div>
       </div>
@@ -97,9 +96,9 @@
     <!-- Teacher -->
     <section class="section-teacher">
       <div class="container mx-auto px-4 py-12">
+        <p class=" text-center pb-4 text-2xl font-bold">O'qituvchimiz haqida</p>
         <div class="teacher-layout">
           <div class="teacher-text">
-            <p class="section-label">O'qituvchi haqida</p>
             <h2 class="section-title">Sizni IELTS dan yuqori ballga olib boradigan ustoz</h2>
             <div class="teacher-body">
               <p>
@@ -111,6 +110,7 @@
               <li>5+ yillik tajriba</li>
               <li>1000+ o'quvchi</li>
             </ul>
+            <p class="teacher-cta-text">Sizni 7.0–9.0 ballga olib boramiz.</p>
             <a href="#form" class="btn-primary">Kursga yozilish</a>
           </div>
           <div class="teacher-photo">
@@ -135,7 +135,7 @@
           <p class="section-label">Kurs qanday o'tadi</p>
           <h2 class="section-title">Nimalar o'rgatamiz va qanday ishlaymiz?</h2>
           <p class="section-intro">
-            Darslar <strong>markazda offline</strong> — haftada 5 kun, 4-6 oygacha davom etadi. Kelganlarning darajasi va kamchiliklari aniqlanadi, kamchiliklar tuzatiladi va maqsad — <strong>8.0 va 9.0</strong> ball. Strategiya, kompyuter formati, haqiqiy IELTS muhiti va o'zimizning platformamiz.
+            Darslar <strong>markazda offline</strong> — haftada 5 kun, 4-6 oygacha davom etadi. Kelganlarning darajasi va kamchiliklari aniqlanadi, kamchiliklar tuzatiladi va maqsad — <strong>7.5+</strong> ball. Strategiya, kompyuter formati, haqiqiy IELTS muhiti va o'zimizning platformamiz.
           </p>
         </div>
         <div class="learn-grid">
@@ -189,12 +189,31 @@
         </div>
       </div>
     </section>
-     <!-- Form -->
-     <section id="form" class="section-form">
+
+    <!-- Students' opinions -->
+    <section class="section-opinions">
+      <div class="container mx-auto px-4 py-12">
+        <div class="section-header">
+          <p class="section-label">Sharhlar</p>
+          <h2 class="section-title">O'quvchilarimiz fikrlari</h2>
+          <p class="section-intro">Kursimizni tugatgan o'quvchilar nima deyishadi.</p>
+        </div>
+        <div class="relative">
+          <div class="swiper swiper-opinions">
+            <div class="swiper-wrapper"></div>
+            <div class="swiper-pagination opinions-pagination"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Form -->
+    <section id="form" class="section-form">
       <div class="container mx-auto px-4 py-12">
         <div class="form-card">
           <h2 class="form-title">Kursga qatnashish uchun ro'yxatdan o'ting:</h2>
-          <p class="form-intro">Ismingiz va telefon raqamingizni qoldiring,biz siz bilan bog'lanamiz.</p>
+          <p class="form-intro">Ismingiz va telefon raqamingizni qoldiring, biz siz bilan bog'lanamiz.</p>
+          <p class="form-contact-note">Biz siz bilan shu raqam orqali bog'lanamiz: <a href="tel:+998507558850" class="form-contact-link">+998 50 755 88 50</a></p>
           <form class="form-fields" id="lead-form">
             <div>
               <label for="username" class="form-label">Ism familiyangiz</label>
@@ -210,24 +229,19 @@
       </div>
     </section>
 
-    <!-- Students' opinions -->
-    <section class="section-opinions">
-      <div class="container mx-auto px-4 py-12">
-        <div class="section-header">
-          <p class="section-label">Sharhlar</p>
-          <h2 class="section-title">O'quvchilarim fikrlari</h2>
-          <p class="section-intro">Kursimizni tugatgan o'quvchilar nima deyishadi.</p>
-        </div>
-        <div class="relative">
-          <div class="swiper swiper-opinions">
-            <div class="swiper-wrapper"></div>
-            <div class="swiper-pagination opinions-pagination"></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
    
+
+    <!-- Success popup (hidden by default) -->
+    <div id="success-popup" class="popup-overlay" aria-hidden="true">
+      <div class="popup-box" role="dialog" aria-labelledby="popup-title">
+        <div class="popup-icon-wrap">
+          <svg class="popup-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+        </div>
+        <h3 id="popup-title" class="popup-title">Muvaffaqiyat!</h3>
+        <p class="popup-message">Ma'lumotlaringiz qabul qilindi! Tez orada siz bilan bog'lanamiz.</p>
+        <button type="button" class="popup-close" id="success-popup-close">Yopish</button>
+      </div>
+    </div>
 
     <!-- Footer -->
     <footer class="footer">
