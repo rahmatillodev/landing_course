@@ -34,6 +34,11 @@ var opinionsData = [
     quote: "Bir yil oldin 5.5, endi 7.0. Intensiv lekin natija bo'ldi.",
     name: 'Sevinch K.',
     score: 'IELTS 7.0'
+  },
+  {
+    quote: "6.0 da qotib qolgan edim. Ustoz kamchiliklarimni ko'rsatdi, 7.5 oldim — rahmat.",
+    name: 'Doston A.',
+    score: 'IELTS 7.5'
   }
 ];
 
@@ -292,14 +297,14 @@ document.addEventListener('DOMContentLoaded', function () {
           form.reset();
           if (btn) {
             btn.disabled = false;
-            btn.textContent = 'Yuborish';
+            btn.textContent = 'Joyni band qilish — yuborish';
           }
         }, function (err) {
           alert("Xatolik yuz berdi. Iltimos, keyinroq urinib ko'ring yoki biz bilan bog'laning.");
           console.error('[Lead]', err);
           if (btn) {
             btn.disabled = false;
-            btn.textContent = 'Yuborish';
+            btn.textContent = 'Joyni band qilish — yuborish';
           }
         });
       });
