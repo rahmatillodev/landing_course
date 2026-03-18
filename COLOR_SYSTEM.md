@@ -11,7 +11,7 @@
 | `--text-primary` / `--text-muted` | Body copy |
 | `--text-on-dark` / `--text-on-dark-muted` | Copy on navy/hero |
 | `--navy` | Footer + dark sections (flat, no gradient) |
-| `--hero-1` … `--hero-5` | Hero gradient stops only |
+| `--hero-1` … `--hero-5` | Hero gradient (purple/violet) |
 
 ## Tailwind (`index.html` inline config)
 
@@ -20,13 +20,13 @@
 
 ## Example usage
 
-**Hero (gradient only here)**
+**Hero (purple gradient + grid overlay)**
 
 ```html
 <section id="hero" class="hero-section">…</section>
 ```
 
-Background is set in CSS: `linear-gradient(135deg, var(--hero-1) … var(--hero-5))`.
+Background: deep purple → violet (`--hero-1` … `--hero-5`). Primary CTA on hero: `.btn-cta-hero-green` (green). Rest of site CTA remains `.btn-brand` (orange).
 
 **Soft blue band + white card**
 
