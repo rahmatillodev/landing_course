@@ -1,19 +1,95 @@
-/* IELTS Landing — Phone-only, professional blue design */
+/* IELTS Landing — SaaS color system: blue hierarchy + orange CTA */
 
 :root {
-  /* Brend ko‘k palitrasi */
-  --blue-primary: #3498DB; /* asosiy urg‘u, tugmalar */
-  --blue-dark: #2980B9; /* sektsiya fonlari */
-  --blue-darker: #1f6fb2; /* gradientlar, chuqurlik */
-  --blue-darkest: #152d42; /* eng to‘q fonlar */
-  --blue-light: #5DADE2; /* yengil fon, hover */
-  --white: #ffffff;
-  --shadow-blue: rgba(21, 45, 66, 0.35);
-  --shadow-blue-deep: rgba(21, 45, 66, 0.5);
-  --ink: #1e293b;
-  --ink-muted: #475569;
-  --surface: #f8fafc;
+  /* —— Primary blue (links, labels, bullets, icons — never primary CTA) —— */
+  --color-primary: #1b6cb5;
+  --color-primary-hover: #155a96;
+
+  /* —— Secondary blue — soft section bands (flat, no gradient) —— */
+  --color-secondary: #e6eef6;
+  --color-secondary-muted: #d8e6f2;
+
+  /* —— CTA accent — high contrast vs blue; conversion-only —— */
+  --cta: #f97316;
+  --cta-hover: #ea580c;
+  --cta-active: #c2410c;
+  --cta-text: #0f172a;
+  --cta-ring: rgba(249, 115, 22, 0.55);
+  --cta-shadow-lg: 0 3px 0 rgba(194, 65, 12, 0.95), 0 14px 40px rgba(234, 88, 12, 0.42);
+
+  /* —— Backgrounds —— */
+  --bg-main: #f8fafc;
+  --bg-elevated: #ffffff;
+  --bg-section-blue: var(--color-secondary);
+
+  /* —— Text —— */
+  --text-primary: #0f172a;
+  --text-secondary: #334155;
+  --text-muted: #64748b;
+  --text-on-dark: #f1f5f9;
+  --text-on-dark-muted: #cbd5e1;
+
+  /* —— Borders & elevation —— */
+  --border: rgba(27, 108, 181, 0.14);
+  --border-strong: rgba(27, 108, 181, 0.22);
+  --card-bg: #ffffff;
+  --shadow-sm: 0 4px 20px rgba(15, 40, 62, 0.08);
+  --shadow-md: 0 12px 36px rgba(15, 40, 62, 0.12);
+
+  /* —— Hero ONLY: 135deg darkest → lightest blue —— */
+  --hero-1: #0a1628;
+  --hero-2: #132a40;
+  --hero-3: #1a4a6e;
+  --hero-4: #2d7ab0;
+  --hero-5: #5dade2;
+
+  /* —— Deep surfaces (footer, compact dark sections) —— */
+  --navy: #0f2438;
+  --navy-mid: #152d42;
+
+  /* Legacy aliases (existing rules keep working) */
+  --blue-primary: var(--color-primary);
+  --blue-dark: var(--color-primary-hover);
+  --blue-darker: #1a5588;
+  --blue-darkest: var(--navy);
+  --blue-light: #6ba3d4;
+  --ink: var(--text-primary);
+  --ink-muted: var(--text-muted);
+  --surface: var(--bg-main);
   --surface-warm: #f1f5f9;
+  --white: #ffffff;
+  --shadow-blue: rgba(15, 40, 62, 0.1);
+  --shadow-blue-deep: rgba(15, 40, 62, 0.18);
+}
+* {
+  outline: none;
+}
+
+/* Section bands: alternate with light pages */
+.section-bg-soft-blue {
+  background: var(--bg-section-blue);
+}
+
+.section-bg-light {
+  background: var(--bg-main);
+}
+
+.footer-bg-deep {
+  background: var(--navy);
+  color: var(--text-on-dark-muted);
+}
+
+.footer-bg-deep h3,
+.footer-bg-deep .font-black.uppercase {
+  color: var(--text-on-dark);
+}
+
+.footer-bg-deep a:not(.btn-brand) {
+  color: var(--text-on-dark-muted);
+}
+
+.footer-bg-deep a:not(.btn-brand):hover {
+  color: var(--text-on-dark);
 }
 @keyframes pulse-slow {
   0%, 100% { transform: translateY(0); }
@@ -40,31 +116,31 @@ body {
   font-family: 'DM Sans', system-ui, sans-serif;
   line-height: 1.6;
   font-size: 1rem;
-  color: var(--ink);
-  background: var(--surface-warm) url('https://masterielts.uz/images/bg2.webp') center/cover no-repeat fixed;
+  color: var(--text-primary);
+  background: var(--bg-main) url('https://masterielts.uz/images/bg2.webp') center/cover no-repeat fixed;
   min-height: 100vh;
   margin: 0 auto !important;
   overflow-x: hidden;
 }
 
-/* Brand CTA — asosiy rang #3498DB, hover #2980B9 */
+/* Primary CTA — orange; dominant vs blue UI */
 .btn-brand {
   display: inline-block;
   padding: 0.875rem 1.75rem;
-  background: var(--blue-primary);
-  color: #fff;
+  background: linear-gradient(180deg, #fb923c 0%, var(--cta) 45%, var(--cta-hover) 100%);
+  color: var(--cta-text);
   font-weight: 900;
   font-size: 0.75rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   text-decoration: none;
   border-radius: 9999px;
-  border: none;
+  border: 1px solid rgba(255, 255, 255, 0.2);
   cursor: pointer;
   box-shadow:
-    0 0 24px rgba(52, 152, 219, 0.45),
-    0 10px 28px rgba(41, 128, 185, 0.35);
-  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    var(--cta-shadow-lg),
+    0 0 40px rgba(249, 115, 22, 0.25);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, filter 0.2s ease;
   -webkit-tap-highlight-color: transparent;
   text-align: center;
   line-height: 1.35;
@@ -81,18 +157,19 @@ body {
 
 .btn-brand:hover {
   transform: scale(1.05);
-  background: var(--blue-dark);
+  filter: brightness(1.05);
+  background: linear-gradient(180deg, var(--cta) 0%, var(--cta-hover) 50%, var(--cta-active) 100%);
   box-shadow:
-    0 0 32px rgba(41, 128, 185, 0.5),
-    0 14px 36px rgba(21, 45, 66, 0.35);
+    0 4px 0 rgba(154, 52, 18, 0.9),
+    0 18px 48px rgba(234, 88, 12, 0.48);
 }
 
 .btn-brand:focus-visible {
   outline: none;
   box-shadow:
-    0 0 0 3px var(--blue-darkest),
-    0 0 0 5px rgba(93, 173, 226, 0.85),
-    0 0 24px rgba(52, 152, 219, 0.45);
+    0 0 0 3px var(--text-on-dark),
+    0 0 0 5px var(--cta-ring),
+    var(--cta-shadow-lg);
 }
 
 /* Kurslar: daftar + katta CTA */
@@ -105,17 +182,17 @@ body {
   max-width: min(100%, calc(100vw - 2rem));
   box-sizing: border-box;
   box-shadow:
-    0 0 32px rgba(52, 152, 219, 0.5),
-    0 0 56px rgba(41, 128, 185, 0.35),
-    0 14px 40px rgba(21, 45, 66, 0.3);
+    var(--cta-shadow-lg),
+    0 0 56px rgba(249, 115, 22, 0.35),
+    0 16px 44px rgba(194, 65, 12, 0.28);
 }
 
 .btn-brand--xl:hover {
   transform: scale(1.06);
   box-shadow:
-    0 0 40px rgba(41, 128, 185, 0.55),
-    0 0 64px rgba(31, 111, 178, 0.35),
-    0 18px 48px rgba(21, 45, 66, 0.35);
+    0 4px 0 rgba(154, 52, 18, 0.95),
+    0 22px 56px rgba(234, 88, 12, 0.5),
+    0 0 64px rgba(249, 115, 22, 0.3);
 }
 
 .notebook-tape {
@@ -218,7 +295,7 @@ body {
   top: 0;
   z-index: 50;
   background: rgba(255, 255, 255, 0.98);
-  border-bottom: 1px solid rgba(41, 128, 185, 0.12);
+  border-bottom: 1px solid var(--border);
   padding: 0.75rem 0;
 }
 
@@ -281,7 +358,7 @@ body {
 }
 
 .header-nav-link:hover {
-  color: #2980B9;
+  color: var(--color-primary);
 }
 
 .header-nav-link--light {
@@ -289,7 +366,7 @@ body {
 }
 
 .header-nav-link--light:hover {
-  color: #fff;
+  color: var(--text-on-dark);
 }
 
 /* ----- Top bar (legacy) ----- */
@@ -301,21 +378,32 @@ body {
   z-index: 50;
 }
 
-/* ----- Hero (dark, pain-based) ----- */
-/* Hero: blue-darker → blue-darkest (id — Tailwind bg ustidan) */
+/* ----- Hero — ONLY full blue gradient (135deg, dark → light) ----- */
 section#hero.hero-section {
   padding: 2.5rem 0 3rem;
   background:
-    radial-gradient(circle at 20% 22%, rgba(255, 255, 255, 0.06), transparent 42%),
-    radial-gradient(circle at 82% 55%, rgba(93, 173, 226, 0.12), transparent 38%),
-    linear-gradient(168deg, var(--blue-darker) 0%, var(--blue-darkest) 48%, var(--blue-darkest) 100%);
+    radial-gradient(circle at 18% 20%, rgba(255, 255, 255, 0.07), transparent 40%),
+    radial-gradient(circle at 88% 70%, rgba(93, 173, 226, 0.14), transparent 42%),
+    linear-gradient(
+      135deg,
+      var(--hero-1) 0%,
+      var(--hero-2) 22%,
+      var(--hero-3) 48%,
+      var(--hero-4) 72%,
+      var(--hero-5) 100%
+    );
 }
 
-/* Natijalar: xuddi shu chuqurlik gradienti */
+/* Results: flat navy (white headlines; not hero gradient) */
 section#results.results-section-bg {
-  background:
-    radial-gradient(ellipse 80% 50% at 50% 0%, rgba(93, 173, 226, 0.08), transparent 55%),
-    linear-gradient(175deg, var(--blue-darker) 0%, var(--blue-darkest) 45%, var(--blue-darkest) 100%);
+  background: var(--navy);
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* Dark promo bands (mentor, urgency, form) */
+.section-bg-navy {
+  background: var(--navy);
 }
 
 /* Kurslar daftari: ko‘k soyali chuqurlik */
@@ -415,21 +503,23 @@ section#results.results-section-bg {
   cursor: pointer;
 }
 
+/* Secondary action on light sections — blue outline (CTA = .btn-brand) */
 .btn-pill--primary {
-  background: var(--blue-primary);
-  color: #fff;
-  box-shadow: 0 4px 20px var(--shadow-blue);
+  background: transparent;
+  color: var(--color-primary);
+  border: 2px solid var(--color-primary);
+  box-shadow: var(--shadow-sm);
 }
 
 .btn-pill--primary:hover {
-  background: var(--blue-dark);
+  background: rgba(27, 108, 181, 0.08);
   transform: translateY(-2px);
-  box-shadow: 0 6px 24px var(--shadow-blue);
+  box-shadow: var(--shadow-md);
 }
 
 .btn-pill--light {
-  background: #fff;
-  color: var(--blue-dark);
+  background: var(--card-bg);
+  color: var(--color-primary);
 }
 
 .btn-pill--light:hover {
@@ -523,14 +613,15 @@ section#results.results-section-bg {
   display: inline-block;
   min-height: 52px;
   padding: 0.875rem 1.75rem;
-  background: var(--blue-primary);
-  color: #fff;
-  font-weight: 700;
+  background: linear-gradient(180deg, #fb923c 0%, var(--cta) 50%, var(--cta-hover) 100%);
+  color: var(--cta-text);
+  font-weight: 800;
   font-size: 1rem;
   border-radius: 9999px;
   text-decoration: none;
-  box-shadow: 0 4px 14px var(--shadow-blue);
-  transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: var(--cta-shadow-lg), 0 0 28px rgba(249, 115, 22, 0.22);
+  transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
   text-align: center;
   line-height: 1.3;
   white-space: nowrap;
@@ -538,9 +629,9 @@ section#results.results-section-bg {
 }
 
 .btn-primary:hover {
-  background: var(--blue-dark);
+  filter: brightness(1.06);
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px var(--shadow-blue);
+  box-shadow: 0 4px 0 rgba(154, 52, 18, 0.85), 0 14px 36px rgba(234, 88, 12, 0.45);
 }
 
 .btn-cta-alt {
@@ -649,18 +740,18 @@ section#results.results-section-bg {
 
 /* ----- Solution (result system) - dark section ----- */
 .section-dark {
-  background: linear-gradient(180deg, var(--blue-darkest) 0%, var(--blue-darker) 100%);
-  color: #fff;
+  background: var(--navy);
+  color: var(--text-on-dark);
   padding: 2.5rem 0;
 }
 
 .section-solution .section-title--light {
-  color: #fff;
+  color: var(--text-on-dark);
   margin-bottom: 0.5rem;
 }
 
 .section-intro--light {
-  color: rgba(255, 255, 255, 0.88);
+  color: var(--text-on-dark-muted);
   font-size: 0.9375rem;
   margin-bottom: 1.25rem;
   line-height: 1.6;
@@ -677,7 +768,7 @@ section#results.results-section-bg {
   padding-left: 1.25rem;
   margin-bottom: 0.6rem;
   font-size: 0.9375rem;
-  color: rgba(255, 255, 255, 0.9);
+  color: var(--text-on-dark);
   line-height: 1.55;
 }
 
@@ -694,8 +785,8 @@ section#results.results-section-bg {
 
 /* ----- Results strip ----- */
 .section-results-strip {
-  background: linear-gradient(135deg, var(--blue-darkest) 0%, var(--blue-darker) 50%, #2980B9 100%);
-  color: #fff;
+  background: var(--navy-mid);
+  color: var(--text-on-dark);
   padding: 2.5rem 0;
 }
 
@@ -717,30 +808,30 @@ section#results.results-section-bg {
   font-family: 'Fraunces', Georgia, serif;
   font-size: 1.5rem;
   font-weight: 700;
-  color: #fff;
+  color: var(--text-on-dark);
   line-height: 1.2;
 }
 
 .results-strip-label {
   font-size: 0.8125rem;
-  color: rgba(255, 255, 255, 0.9);
+  color: var(--text-on-dark-muted);
   font-weight: 500;
 }
 
 .results-strip-footer {
   text-align: center;
   font-size: 0.875rem;
-  color: rgba(255, 255, 255, 0.85);
+  color: var(--text-on-dark-muted);
   margin: 1rem 0 0;
 }
 
 .section-title--light {
-  color: #fff;
+  color: var(--text-on-dark);
   margin-bottom: 1rem;
 }
 
 .section-label--light {
-  color: rgba(255, 255, 255, 0.85);
+  color: var(--text-on-dark-muted);
 }
 
 /* ----- Nima qilish kerak? ----- */
@@ -849,8 +940,8 @@ section#results.results-section-bg {
 /* ----- Courses (Bizning Kurslar) ----- */
 .section-courses {
   padding: 2.5rem 0;
-  background: #f0f7fc;
-  border-top: 1px solid rgba(41, 128, 185, 0.1);
+  background: var(--bg-main);
+  border-top: 1px solid var(--border);
 }
 
 .courses-grid {
@@ -1115,22 +1206,23 @@ section#results.results-section-bg {
   display: inline-block;
   min-height: 52px;
   padding: 0.875rem 1.75rem;
-  background: var(--blue-dark);
-  color: #fff;
-  font-weight: 700;
+  background: linear-gradient(180deg, var(--cta) 0%, var(--cta-hover) 100%);
+  color: var(--cta-text);
+  font-weight: 800;
   font-size: 1rem;
   border-radius: 9999px;
   text-decoration: none;
-  box-shadow: 0 4px 18px var(--shadow-blue);
-  transition: background 0.2s ease, transform 0.2s ease;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: var(--cta-shadow-lg);
+  transition: filter 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
   white-space: nowrap;
   -webkit-tap-highlight-color: transparent;
 }
 
 .btn-offer:hover {
-  background: var(--blue-darker);
+  filter: brightness(1.08);
   transform: translateY(-2px);
-  box-shadow: 0 6px 24px var(--shadow-blue);
+  box-shadow: 0 4px 0 rgba(154, 52, 18, 0.9), 0 16px 40px rgba(234, 88, 12, 0.45);
 }
 
 /* ----- FAQ ----- */
@@ -1176,7 +1268,7 @@ section#results.results-section-bg {
 .faq-question::after {
   content: '+';
   font-size: 1.25rem;
-  color: #2980B9;
+  color: var(--color-primary);
   flex-shrink: 0;
   margin-left: 0.5rem;
 }
@@ -1215,8 +1307,8 @@ section#results.results-section-bg {
 }
 
 .section-form--dark {
-  background: linear-gradient(180deg, var(--blue-darker) 0%, var(--blue-darkest) 100%);
-  color: #fff;
+  background: var(--navy);
+  color: var(--text-on-dark);
 }
 
 .form-heading {
@@ -1230,7 +1322,7 @@ section#results.results-section-bg {
 }
 
 .form-heading--light {
-  color: #fff;
+  color: var(--text-on-dark);
 }
 
 .form-subheading {
@@ -1242,7 +1334,7 @@ section#results.results-section-bg {
 }
 
 .form-subheading--light {
-  color: rgba(255, 255, 255, 0.88);
+  color: var(--text-on-dark-muted);
 }
 
 .form-card {
@@ -1284,11 +1376,11 @@ section#results.results-section-bg {
 }
 
 .form-contact-note--light {
-  color: rgba(255, 255, 255, 0.88);
+  color: var(--text-on-dark-muted);
 }
 
 .form-contact-link {
-  color: #2980B9;
+  color: var(--color-primary);
   font-weight: 600;
   text-decoration: none;
   -webkit-tap-highlight-color: transparent;
@@ -1303,11 +1395,11 @@ section#results.results-section-bg {
 }
 
 .form-contact-link--light:hover {
-  color: #fff;
+  color: var(--text-on-dark);
 }
 
 .form-label--light {
-  color: rgba(255, 255, 255, 0.9);
+  color: var(--text-on-dark);
 }
 
 .form-input--dark {
@@ -1419,7 +1511,7 @@ section#results.results-section-bg {
   font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: #2980B9;
+  color: var(--color-primary);
   margin-bottom: 0.5rem;
 }
 
@@ -1466,8 +1558,8 @@ section#results.results-section-bg {
 
 .teacher-badges li {
   padding: 0.5rem 1rem;
-  background: rgba(52, 152, 219, 0.15);
-  color: #2980B9;
+  background: rgba(27, 108, 181, 0.12);
+  color: var(--color-primary);
   font-size: 0.875rem;
   font-weight: 500;
   border-radius: 999px;
@@ -1486,8 +1578,8 @@ section#results.results-section-bg {
 
 /* ----- Learn section ----- */
 .section-learn {
-  background: #f0f7fc;
-  border-top: 1px solid rgba(41, 128, 185, 0.1);
+  background: var(--color-secondary);
+  border-top: 1px solid var(--border);
 }
 
 .learn-grid {
@@ -1507,7 +1599,7 @@ section#results.results-section-bg {
 }
 
 .learn-card:hover {
-  border-left-color: #2980B9;
+  border-left-color: var(--color-primary-hover);
   box-shadow: 0 8px 24px var(--shadow-blue);
 }
 
@@ -1522,13 +1614,13 @@ section#results.results-section-bg {
 }
 
 .learn-icon--green {
-  background: rgba(52, 152, 219, 0.15);
-  color: #2980B9;
+  background: rgba(27, 108, 181, 0.12);
+  color: var(--color-primary);
 }
 
 .learn-icon--terracotta {
-  background: rgba(93, 173, 226, 0.3);
-  color: #2980B9;
+  background: rgba(27, 108, 181, 0.18);
+  color: var(--color-primary-hover);
 }
 
 .learn-card-title {
@@ -1647,15 +1739,15 @@ section#results.results-section-bg {
 }
 
 .section-header--light .section-label {
-  color: rgba(255, 255, 255, 0.8);
+  color: var(--text-on-dark-muted);
 }
 
-.section-title--light {
-  color: #fff;
+.section-results .section-title--light {
+  color: var(--text-on-dark);
 }
 
-.section-intro--light {
-  color: rgba(255, 255, 255, 0.75);
+.section-results .section-intro--light {
+  color: var(--text-on-dark-muted);
 }
 
 .results-pagination {
@@ -1820,7 +1912,7 @@ section#results.results-section-bg {
   width: 3rem;
   height: 3rem;
   margin: 0 auto 1rem;
-  background: rgba(52, 152, 219, 0.15);
+  background: rgba(249, 115, 22, 0.12);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -1829,7 +1921,7 @@ section#results.results-section-bg {
 .popup-icon {
   width: 1.75rem;
   height: 1.75rem;
-  color: var(--blue-primary);
+  color: var(--cta-hover);
 }
 .popup-title {
   font-family: 'Fraunces', Georgia, serif;
@@ -1846,7 +1938,7 @@ section#results.results-section-bg {
 }
 
 .popup-contact-link {
-  color: var(--blue-primary);
+  color: var(--color-primary);
   font-weight: 600;
   text-decoration: none;
   -webkit-tap-highlight-color: transparent;
@@ -1858,23 +1950,24 @@ section#results.results-section-bg {
 .popup-close {
   display: inline-block;
   padding: 0.625rem 1.5rem;
-  background: var(--blue-primary);
-  color: var(--white);
-  border: none;
+  background: linear-gradient(180deg, var(--cta) 0%, var(--cta-hover) 100%);
+  color: var(--cta-text);
+  border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 0.5rem;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 0.9375rem;
   cursor: pointer;
   white-space: nowrap;
-  transition: background 0.2s ease;
+  transition: filter 0.2s ease, transform 0.2s ease;
 }
 .popup-close:hover {
-  background: var(--blue-dark);
+  filter: brightness(1.06);
+  transform: translateY(-1px);
 }
 
 .footer {
-  background: var(--blue-darkest);
-  color: rgba(255, 255, 255, 0.9);
+  background: var(--navy);
+  color: var(--text-on-dark-muted);
   font-size: 0.875rem;
   padding: 2rem 0;
   padding-bottom: calc(2rem + env(safe-area-inset-bottom, 0px));
@@ -1897,7 +1990,7 @@ section#results.results-section-bg {
 .footer-links-title {
   font-weight: 700;
   font-size: 0.9375rem;
-  color: #fff;
+  color: var(--text-on-dark);
   margin: 0 0 0.5rem;
 }
 
@@ -1922,7 +2015,7 @@ section#results.results-section-bg {
 }
 
 .footer-links-list a {
-  color: rgba(255, 255, 255, 0.9);
+  color: var(--text-on-dark-muted);
   text-decoration: none;
   -webkit-tap-highlight-color: transparent;
 }
@@ -1943,7 +2036,7 @@ section#results.results-section-bg {
   display: inline-block;
   margin-top: 0.5rem;
   font-weight: 600;
-  color: #fff;
+  color: var(--text-on-dark);
   text-decoration: none;
   -webkit-tap-highlight-color: transparent;
 }
@@ -1961,7 +2054,7 @@ section#results.results-section-bg {
 }
 
 .footer-contact-link {
-  color: #fff;
+  color: var(--text-on-dark);
   font-weight: 600;
   text-decoration: none;
   -webkit-tap-highlight-color: transparent;
