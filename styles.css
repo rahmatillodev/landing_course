@@ -174,16 +174,35 @@ body {
 /* Kurslar: daftar + katta CTA */
 .btn-brand--xl {
   padding: 1.35rem 2.75rem;
-  /* Tighter min so long labels stay one line on narrow viewports */
   font-size: clamp(0.55rem, 2.8vw + 0.45rem, 1.125rem);
   letter-spacing: 0.12em;
   white-space: nowrap;
   max-width: min(100%, calc(100vw - 2rem));
   box-sizing: border-box;
+  overflow-wrap: anywhere;
+  word-break: break-word;
   box-shadow:
     var(--cta-shadow-lg),
     0 0 56px rgba(249, 115, 22, 0.35),
     0 16px 44px rgba(194, 65, 12, 0.28);
+}
+
+/* Narrow phones: nowrap + max-width squeezes pill but not text — overflow; allow wrap */
+@media (max-width: 639.98px) {
+  .btn-brand--xl {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    white-space: normal;
+    max-width: 100%;
+    width: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    line-height: 1.25;
+    letter-spacing: 0.08em;
+  }
 }
 
 .btn-brand--xl:hover {
