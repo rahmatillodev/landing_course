@@ -1129,15 +1129,6 @@ section#results.results-section-bg {
 .shorts-col-down-22 { animation: scrollDown 22s linear infinite; }
 .shorts-col-up-28 { animation: scrollUp 28s linear infinite; }
 
-.shorts-col-up-20:hover,
-.shorts-col-down-30:hover,
-.shorts-col-up-25:hover,
-.shorts-col-down-22:hover,
-.shorts-col-up-28:hover,
-.results-shorts-col:hover .results-shorts-col-inner {
-  animation-play-state: paused;
-}
-
 .shorts-stagger-0 { margin-top: 0; }
 .shorts-stagger-1 { margin-top: 0.5rem; }
 .shorts-stagger-2 { margin-top: 1.25rem; }
