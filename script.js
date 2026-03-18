@@ -286,6 +286,39 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
+  var PHONE_MAX_DIGITS = 12;
+  var PHONE_MIN_DIGITS = 9;
+
+  /** Boshida + bo‘lishi mumkin, keyin faqat raqam (jami 12 ta raqam). */
+  function normalizePhoneInput(value) {
+    var s = String(value || '');
+    var start = 0;
+    while (start < s.length && /\s/.test(s[start])) start++;
+    var hasPlus = s[start] === '+';
+    var digits = s.replace(/\D/g, '').slice(0, PHONE_MAX_DIGITS);
+    if (hasPlus) {
+      return digits.length ? '+' + digits : '+';
+    }
+    return digits;
+  }
+
+  function phoneDigitCount(phone) {
+    return String(phone || '').replace(/\D/g, '').length;
+  }
+
+  var phoneInput = document.getElementById('phone');
+  if (phoneInput) {
+    phoneInput.addEventListener('input', function () {
+      var v = normalizePhoneInput(phoneInput.value);
+      if (phoneInput.value !== v) phoneInput.value = v;
+    });
+    phoneInput.addEventListener('paste', function (e) {
+      e.preventDefault();
+      var t = (e.clipboardData || window.clipboardData).getData('text') || '';
+      phoneInput.value = normalizePhoneInput(t);
+    });
+  }
+
   // Form submit: save to Supabase (course_leads), then success message + Facebook Lead
   var form = document.getElementById('lead-form');
   if (form) {
@@ -294,9 +327,14 @@ document.addEventListener('DOMContentLoaded', function () {
       var nameEl = document.getElementById('username');
       var phoneEl = document.getElementById('phone');
       var name = (nameEl && nameEl.value) ? nameEl.value.trim() : '';
-      var phone = (phoneEl && phoneEl.value) ? phoneEl.value.trim() : '';
-      if (!name || !phone) {
+      var phone = phoneEl ? normalizePhoneInput(phoneEl.value) : '';
+      if (phoneEl) phoneEl.value = phone;
+      if (!name || phoneDigitCount(phone) < 1) {
         alert("Ism va telefon raqamni to'ldiring.");
+        return;
+      }
+      if (phoneDigitCount(phone) < PHONE_MIN_DIGITS) {
+        alert("Telefon kamida 9 ta raqam bo'lishi kerak (masalan +998901234567 yoki 901234567).");
         return;
       }
 

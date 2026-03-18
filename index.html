@@ -1222,7 +1222,13 @@
                   id="phone"
                   name="phone"
                   type="tel"
-                  placeholder="+998 90 123 45 67"
+                  inputmode="tel"
+                  autocomplete="tel"
+                  placeholder="+998901234567"
+                  maxlength="13"
+                  value="+998"
+                  pattern="\+?[0-9]{9,12}"
+                  title="Boshida + ixtiyoriy, 9–12 ta raqam"
                   class="w-full max-w-full box-border bg-white text-slate-900 py-4 md:py-5 px-5 md:px-6 rounded-xl font-bold focus:outline-none focus:ring-4 focus:ring-emerald-500/50 transition-all placeholder:text-slate-400 text-sm md:text-base"
                   required
                 />
