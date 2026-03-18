@@ -40,7 +40,140 @@ body {
   background: var(--surface-warm) url('https://masterielts.uz/images/bg2.webp') center/cover no-repeat fixed;
   min-height: 100vh;
   margin: 0 auto !important;
+  overflow-x: hidden;
 }
+
+/* Brand CTA — barcha asosiy tugmalar */
+.btn-brand {
+  display: inline-block;
+  padding: 0.875rem 1.75rem;
+  background: #10b981;
+  color: #fff;
+  font-weight: 900;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 9999px;
+  border: none;
+  cursor: pointer;
+  box-shadow:
+    0 0 22px rgba(16, 185, 129, 0.55),
+    0 10px 28px rgba(16, 185, 129, 0.35);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  -webkit-tap-highlight-color: transparent;
+  text-align: center;
+  line-height: 1.35;
+}
+
+.btn-brand:hover {
+  transform: scale(1.05);
+  background: #059669;
+  box-shadow:
+    0 0 28px rgba(16, 185, 129, 0.65),
+    0 14px 36px rgba(16, 185, 129, 0.45);
+}
+
+.btn-brand:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 3px #2d1b4d,
+    0 0 0 5px rgba(52, 211, 153, 0.9),
+    0 0 22px rgba(16, 185, 129, 0.55);
+}
+
+/* Kurslar: daftar + katta CTA */
+.btn-brand--xl {
+  padding: 1.35rem 2.75rem;
+  font-size: clamp(0.875rem, 2.5vw, 1.125rem);
+  letter-spacing: 0.12em;
+  box-shadow:
+    0 0 28px rgba(16, 185, 129, 0.65),
+    0 0 50px rgba(16, 185, 129, 0.4),
+    0 14px 40px rgba(16, 185, 129, 0.45);
+}
+
+.btn-brand--xl:hover {
+  transform: scale(1.06);
+  box-shadow:
+    0 0 36px rgba(16, 185, 129, 0.75),
+    0 0 60px rgba(16, 185, 129, 0.5),
+    0 18px 48px rgba(16, 185, 129, 0.55);
+}
+
+.notebook-tape {
+  position: absolute;
+  width: 3.25rem;
+  height: 1.1rem;
+  border-radius: 2px;
+  opacity: 0.85;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+  z-index: 5;
+}
+
+.notebook-tape--purple {
+  background: linear-gradient(180deg, #a78bfa 0%, #7c3aed 50%, #6d28d9 100%);
+}
+
+.notebook-tape--emerald {
+  background: linear-gradient(180deg, #6ee7b7 0%, #10b981 50%, #059669 100%);
+}
+
+.hero-grid-overlay {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+/* Hero: «YO'L BOR» — faqat yashil hoshiya (Master IELTS uslubi) */
+.hero-text-stroke-goal {
+  color: transparent;
+  -webkit-text-stroke: 1px #34d399;
+  paint-order: stroke fill;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 20px rgba(52, 211, 153, 0.25));
+}
+
+@supports not (-webkit-text-stroke: 1px red) {
+  .hero-text-stroke-goal {
+    color: rgba(45, 27, 77, 0.15);
+    -webkit-text-fill-color: rgba(45, 27, 77, 0.2);
+    text-shadow:
+      -1px -1px 0 #34d399,
+      1px -1px 0 #34d399,
+      -1px 1px 0 #34d399,
+      1px 1px 0 #34d399;
+  }
+}
+
+/* Mentor: jilet atrofida xira yashil nur */
+.hero-mentor-glow {
+  position: absolute;
+  left: 42%;
+  top: 38%;
+  transform: translate(-50%, -50%);
+  width: min(72%, 320px);
+  height: min(48%, 340px);
+  background: radial-gradient(
+    ellipse 100% 100% at 45% 48%,
+    rgba(16, 185, 129, 0.1) 0%,
+    rgba(16, 185, 129, 0.04) 45%,
+    transparent 70%
+  );
+  pointer-events: none;
+  z-index: 1;
+  filter: blur(4px);
+}
+
+@media (min-width: 1024px) {
+  .hero-mentor-glow {
+    width: min(78%, 380px);
+    height: min(52%, 400px);
+  }
+}
+
+
 
 
 .font-display {
@@ -760,15 +893,100 @@ body {
   animation: scrollDown 25s linear infinite;
 }
 
-/* Ustunlarni takrorlash (Cheksizdek ko'rinishi uchun) */
-.animate-scroll-up:hover, .animate-scroll-down:hover {
+.shorts-col-up-20 { animation: scrollUp 20s linear infinite; }
+.shorts-col-down-30 { animation: scrollDown 30s linear infinite; }
+.shorts-col-up-25 { animation: scrollUp 25s linear infinite; }
+.shorts-col-down-22 { animation: scrollDown 22s linear infinite; }
+.shorts-col-up-28 { animation: scrollUp 28s linear infinite; }
+
+.shorts-col-up-20:hover,
+.shorts-col-down-30:hover,
+.shorts-col-up-25:hover,
+.shorts-col-down-22:hover,
+.shorts-col-up-28:hover,
+.results-shorts-col:hover .results-shorts-col-inner {
   animation-play-state: paused;
 }
 
-/* Fade effekti (Tepa va past qism yoyilib ketishi uchun) */
+.shorts-stagger-0 { margin-top: 0; }
+.shorts-stagger-1 { margin-top: 0.5rem; }
+.shorts-stagger-2 { margin-top: 1.25rem; }
+.shorts-stagger-3 { margin-top: 0.75rem; }
+
+@media (min-width: 768px) {
+  .shorts-stagger-1 { margin-top: 1rem; }
+  .shorts-stagger-2 { margin-top: 2rem; }
+  .shorts-stagger-3 { margin-top: 1.5rem; }
+}
+
 .mask-gradient {
-  mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
-  -webkit-mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
+  mask-image: linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%);
+}
+
+/* Natijalar (shorts) — ustunlar yonma-yon, scroll animatsiya clip ichida */
+.results-shorts-track {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: center;
+  height: 100%;
+  min-height: 0;
+  gap: 0.5rem;
+  padding: 0.75rem 0.35rem;
+  box-sizing: border-box;
+}
+
+@media (min-width: 640px) {
+  .results-shorts-track {
+    gap: 0.65rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .results-shorts-track {
+    gap: 1rem;
+  }
+}
+
+.results-shorts-col {
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.results-shorts-col-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  width: 100%;
+  flex: 0 0 auto;
+}
+@media (max-width: 768px) {
+  .results-shorts-col:nth-child(even) {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .results-shorts-col-inner.shorts-col-up-20,
+  .results-shorts-col-inner.shorts-col-down-30,
+  .results-shorts-col-inner.shorts-col-up-25,
+  .results-shorts-col-inner.shorts-col-down-22,
+  .results-shorts-col-inner.shorts-col-up-28,
+  .shorts-col-up-20,
+  .shorts-col-down-30,
+  .shorts-col-up-25,
+  .shorts-col-down-22,
+  .shorts-col-up-28 {
+    animation: none !important;
+    transform: none;
+  }
 }
 
 @keyframes bounce-x {

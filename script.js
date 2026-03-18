@@ -230,22 +230,45 @@ function hideSuccessPopup() {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
+  // Hero: fon IELTSCORE sekin, mentor tezroq parallax
+  (function initHeroParallax() {
+    var hero = document.getElementById('hero');
+    var wm = document.getElementById('hero-parallax-watermark');
+    var mentor = document.getElementById('hero-parallax-mentor');
+    if (!hero || !wm || !mentor) return;
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    function tick() {
+      var rect = hero.getBoundingClientRect();
+      var vh = window.innerHeight || 0;
+      if (rect.bottom < 0 || rect.top > vh) return;
+      var scrolled = Math.max(0, -rect.top);
+      wm.style.transform = 'translate3d(0,' + scrolled * 0.1 + 'px,0)';
+      mentor.style.transform = 'translate3d(0,' + -scrolled * 0.32 + 'px,0)';
+    }
+    window.addEventListener('scroll', tick, { passive: true });
+    window.addEventListener('resize', tick, { passive: true });
+    tick();
+  })();
+
   renderOpinionsSlides();
 
-  new Swiper('.swiper-opinions', {
-    slidesPerView: 1,
-    spaceBetween: 24,
-    loop: true,
-    autoplay: {
-      delay: 2000,
-      disableOnInteraction: false
-    },
-    breakpoints: {
-      640: { slidesPerView: 1 },
-      768: { slidesPerView: 2 },
-      1024: { slidesPerView: 3 }
-    }
-  });
+  var opinionsEl = document.querySelector('.swiper-opinions');
+  if (opinionsEl) {
+    new Swiper('.swiper-opinions', {
+      slidesPerView: 1,
+      spaceBetween: 24,
+      loop: true,
+      autoplay: {
+        delay: 2000,
+        disableOnInteraction: false
+      },
+      breakpoints: {
+        640: { slidesPerView: 1 },
+        768: { slidesPerView: 2 },
+        1024: { slidesPerView: 3 }
+      }
+    });
+  }
 
   // Team / jamoa carousel (courses section)
   var swiperTeam = document.querySelector('.swiper-team');
