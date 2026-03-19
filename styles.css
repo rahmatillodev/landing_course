@@ -92,11 +92,20 @@
   color: var(--text-on-dark);
 }
 @keyframes pulse-slow {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-20px); }
+  0%, 100% { transform: translateY(0) translateX(100px); }
+  50% { transform: translateY(-20px) translateX(100px); }
 }
+
 .animate-pulse-slow {
   animation: pulse-slow 6s ease-in-out infinite;
+}
+
+/* Kichik ekranlar uchun */
+@media (max-width: 768px) {
+  @keyframes pulse-slow {
+    0%, 100% { transform: translateY(0) translateX(0); }
+    50% { transform: translateY(-20px) translateX(0); }
+  }
 }
 
   @keyframes float {
